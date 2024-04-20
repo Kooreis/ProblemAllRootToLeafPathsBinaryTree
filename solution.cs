@@ -1,13 +1,22 @@
-using System;
-using System.Collections.Generic;
-
-public class Node
+public class BinaryTree
 {
-    public int data;
-    public Node left, right;
-    public Node(int item)
+    Node root;
+
+    void printPaths(Node node, List<int> path)
     {
-        data = item;
-        left = right = null;
+        if (node == null)
+            return;
+
+        path.Add(node.data);
+
+        if (node.left == null && node.right == null)
+        {
+            Console.WriteLine(string.Join("->", path));
+        }
+        else
+        {
+            printPaths(node.left, new List<int>(path));
+            printPaths(node.right, new List<int>(path));
+        }
     }
 }
